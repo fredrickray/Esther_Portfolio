@@ -25,8 +25,8 @@ export default function Navbar() {
       <nav className="nav">
         <div className="wrap">
           <Link href="/" className="logo">
-            <span className="mark">EI</span>
-            <span>{profile.brand}</span>
+            <span className="mark">{profile.firstName.charAt(0)}</span>
+            <span className="word">{profile.brand}</span>
           </Link>
 
           <div className={`links ${menuOpen ? 'on' : ''}`}>
@@ -96,26 +96,32 @@ export default function Navbar() {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            font-family: var(--font-display), sans-serif;
-            font-weight: 700;
             color: var(--text-primary);
           }
           .logo:hover {
             color: var(--text-primary);
           }
           .mark {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             display: grid;
             place-items: center;
             background: var(--primary);
             color: var(--btn-ink);
-            font-size: 12px;
+            font-family: var(--font-display), sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+          }
+          .word {
+            font-family: var(--font-display), sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: -0.02em;
           }
           .links {
             display: flex;
-            gap: 24px;
+            gap: 22px;
             align-items: center;
           }
           .links :global(a),
@@ -132,7 +138,7 @@ export default function Navbar() {
           .links :global(a.active),
           .links :global(a:hover),
           .mobile-resume:hover {
-            color: var(--primary-dark);
+            color: var(--primary);
           }
           .actions {
             display: flex;

@@ -45,7 +45,7 @@ export default function ContactPage() {
             <h1>
               Let&apos;s build
               <br />
-              something useful
+              <em>something useful</em>
             </h1>
             <p className="lede">
               Open to front-end, React Native, and full-stack roles. Based in {profile.location}.
@@ -63,7 +63,7 @@ export default function ContactPage() {
           </div>
         </Reveal>
 
-        <Reveal delay={90}>
+        <Reveal delay={80}>
           <div className="panel">
             <div className="panel-head">
               <h2>Send a message</h2>
@@ -127,21 +127,25 @@ export default function ContactPage() {
         .contact {
           min-height: calc(100vh - var(--nav-height));
           background: var(--bg-primary);
-          padding: 72px 0 96px;
+          padding: 64px 0 88px;
         }
         .layout {
           display: grid;
           grid-template-columns: 1fr 1.05fr;
-          gap: 48px;
+          gap: 40px;
           align-items: start;
         }
         h1 {
           font-size: clamp(36px, 5vw, 52px);
           margin-bottom: 16px;
         }
+        h1 em {
+          font-style: normal;
+          color: var(--primary);
+        }
         .lede {
           color: var(--text-secondary);
-          max-width: 420px;
+          max-width: 400px;
           line-height: 1.7;
           margin-bottom: 28px;
         }
@@ -152,7 +156,7 @@ export default function ContactPage() {
           display: flex;
           flex-direction: column;
           gap: 4px;
-          padding: 16px 0;
+          padding: 14px 0;
           border-bottom: 1px solid var(--border);
           color: inherit;
         }
@@ -163,10 +167,10 @@ export default function ContactPage() {
           color: var(--text-muted);
         }
         .details strong {
-          font-size: 16px;
+          font-size: 15px;
         }
         .details a:hover strong {
-          color: var(--primary-dark);
+          color: var(--primary);
         }
         .panel {
           background: var(--bg-card);
@@ -176,10 +180,10 @@ export default function ContactPage() {
           box-shadow: var(--shadow-card);
         }
         .panel-head {
-          margin-bottom: 22px;
+          margin-bottom: 20px;
         }
         .panel-head h2 {
-          font-size: 22px;
+          font-size: 20px;
           margin-bottom: 4px;
         }
         .panel-head .mono {
@@ -189,7 +193,7 @@ export default function ContactPage() {
         form {
           display: flex;
           flex-direction: column;
-          gap: 14px;
+          gap: 12px;
         }
         .row {
           display: grid;
@@ -209,7 +213,7 @@ export default function ContactPage() {
           text-align: center;
         }
         .success .mono {
-          color: var(--primary-dark);
+          color: var(--primary);
           margin-bottom: 10px;
         }
         .success h3 {

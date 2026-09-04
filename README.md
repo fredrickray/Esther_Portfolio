@@ -2,6 +2,10 @@
 
 Dev-first portfolio for **Ikilama Esther**: front-end development with Next.js & React Native.
 
+**Design 3 (current):** Soft studio — cool fog, royal blue + teal accent, Unbounded + Karla, phone wireframe board.
+
+Previous: Design 1 teal terminal · Design 2 cobalt ledger.
+
 ## Run
 
 ```bash

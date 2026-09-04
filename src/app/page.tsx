@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
-import StackPanel from '@/components/StackPanel';
+import WireframeBoard from '@/components/WireframeBoard';
 import { profile } from '@/data/profile';
 import { experience } from '@/data/experience';
 import { skillGroups } from '@/data/skills';
@@ -13,16 +13,15 @@ export default function Home() {
       <section className="hero">
         <div className="container hero-grid">
           <div className="copy">
-            <p className="brand mono">{profile.brand}</p>
-            <h1>
-              {profile.firstName}
-              <br />
-              {profile.lastName}
-            </h1>
             <p className="availability mono">
               <span className="dot" />
               {profile.availability}
             </p>
+            <h1>
+              {profile.firstName}
+              <br />
+              <em>{profile.lastName}</em>
+            </h1>
             <p className="role">{profile.role}</p>
             <p className="lede">{profile.tagline}</p>
             <div className="hero-actions">
@@ -33,27 +32,28 @@ export default function Home() {
                 Contact
               </Link>
             </div>
-            <div className="channels">
-              {profile.stack.slice(0, 5).map((c) => (
-                <span key={c}>{c}</span>
-              ))}
-            </div>
           </div>
-          <StackPanel />
+          <WireframeBoard />
         </div>
       </section>
 
       <section className="highlights">
-        <div className="container grid">
-          {profile.highlights.map((item, i) => (
-            <Reveal key={item.title} delay={i * 80}>
-              <article className="card">
-                <span className="mono num">{String(i + 1).padStart(2, '0')}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            </Reveal>
-          ))}
+        <div className="container">
+          <Reveal>
+            <p className="section-kicker">Focus</p>
+            <h2 className="section-title">How I show up</h2>
+          </Reveal>
+          <div className="grid">
+            {profile.highlights.map((item, i) => (
+              <Reveal key={item.title} delay={i * 80}>
+                <article className="card">
+                  <span className="mono num">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -61,7 +61,7 @@ export default function Home() {
         <div className="container about-grid">
           <Reveal>
             <p className="section-kicker">Profile</p>
-            <h2 className="section-title">Interfaces that work</h2>
+            <h2 className="section-title">Interfaces that feel clear</h2>
           </Reveal>
           <Reveal delay={80}>
             <p>{profile.about}</p>
@@ -74,14 +74,14 @@ export default function Home() {
         <div className="container">
           <Reveal>
             <p className="section-kicker">Experience</p>
-            <h2 className="section-title">Where I&apos;ve grown</h2>
+            <h2 className="section-title">Recent roles</h2>
           </Reveal>
           <div className="stories">
             {experience.map((item, i) => (
               <Reveal key={item.id} delay={i * 70}>
-                <article className={`story focus-${item.focus}`}>
+                <article className="story">
                   <div className="meta">
-                    <span className="focus">{item.focus}</span>
+                    <span className="pill">{item.focus}</span>
                     <span className="mono period">{item.period}</span>
                   </div>
                   <h3>{item.role}</h3>
@@ -89,11 +89,6 @@ export default function Home() {
                     {item.company} · {item.location}
                   </p>
                   <p className="blurb">{item.bullets[0]}</p>
-                  <div className="tools">
-                    {item.tools.map((t) => (
-                      <span key={t}>{t}</span>
-                    ))}
-                  </div>
                 </article>
               </Reveal>
             ))}
@@ -143,12 +138,10 @@ export default function Home() {
       </section>
 
       <section className="cta">
-        <div className="container cta-inner">
+        <div className="container cta-box">
           <Reveal>
             <h2>Need a front-end developer who ships clean UI?</h2>
-            <p>
-              Open to Next.js, React Native, and full-stack roles — based in {profile.location}.
-            </p>
+            <p>Open to Next.js, React Native, and full-stack roles.</p>
             <div className="cta-actions">
               <Link href="/contact" className="btn btn-primary">
                 Start a conversation
@@ -164,57 +157,52 @@ export default function Home() {
       <style jsx>{`
         .hero {
           background: var(--bg-hero);
-          padding: 64px 0 72px;
-          border-bottom: 1px solid var(--border);
+          padding: 48px 0 64px;
         }
         .hero-grid {
           display: grid;
-          grid-template-columns: 1.05fr 0.95fr;
-          gap: 40px;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 32px;
           align-items: center;
         }
         .copy {
           animation: rise 0.75s ease both;
         }
-        .brand {
-          color: var(--primary);
-          font-size: 12px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          margin-bottom: 16px;
-        }
-        .copy h1 {
-          font-size: clamp(48px, 8vw, 78px);
-          color: var(--text-on-dark);
-          margin-bottom: 16px;
-        }
         .availability {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          color: var(--text-on-dark-muted);
           font-size: 11px;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.06em;
           text-transform: uppercase;
-          margin-bottom: 14px;
+          color: var(--text-muted);
+          margin-bottom: 18px;
         }
         .dot {
-          width: 7px;
-          height: 7px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
           background: var(--primary);
           animation: pulse-dot 2s ease infinite;
         }
-        .role {
-          color: var(--primary);
-          font-size: 13px;
-          font-weight: 700;
+        h1 {
+          font-size: clamp(42px, 8vw, 72px);
           margin-bottom: 14px;
         }
+        h1 em {
+          font-style: normal;
+          color: var(--primary);
+        }
+        .role {
+          color: var(--accent);
+          font-weight: 700;
+          font-size: 14px;
+          margin-bottom: 12px;
+        }
         .lede {
-          color: var(--text-on-dark-muted);
-          font-size: 17px;
-          max-width: 440px;
+          max-width: 420px;
+          color: var(--text-secondary);
+          font-size: 16px;
           line-height: 1.7;
           margin-bottom: 24px;
         }
@@ -222,20 +210,6 @@ export default function Home() {
           display: flex;
           flex-wrap: wrap;
           gap: 10px;
-          margin-bottom: 22px;
-        }
-        .channels {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-        }
-        .channels span {
-          font-size: 11px;
-          font-weight: 700;
-          color: var(--text-on-dark-muted);
-          border: 1px solid var(--border-dark);
-          border-radius: 999px;
-          padding: 6px 10px;
         }
         .highlights,
         .skills,
@@ -245,9 +219,10 @@ export default function Home() {
         }
         .highlights {
           background: var(--bg-secondary);
-          border-bottom: 1px solid var(--border);
+          border-top: 1px solid var(--border);
         }
         .grid {
+          margin-top: 28px;
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 14px;
@@ -259,24 +234,23 @@ export default function Home() {
           border: 1px solid var(--border);
           border-radius: var(--radius);
           padding: 24px;
-          transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .card:hover,
         .story:hover,
         .skill-card:hover {
           transform: translateY(-4px);
-          border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
           box-shadow: var(--shadow-card);
         }
         .num {
-          color: var(--primary-dark);
+          color: var(--primary);
           font-size: 12px;
           display: block;
           margin-bottom: 14px;
         }
         .card h3,
         .story h3 {
-          font-size: 22px;
+          font-size: 20px;
           margin-bottom: 8px;
         }
         .card p,
@@ -295,7 +269,7 @@ export default function Home() {
           grid-template-columns: 0.9fr 1.1fr;
           gap: 40px;
         }
-        .about .muted {
+        .muted {
           margin-top: 14px;
           color: var(--text-muted);
         }
@@ -306,9 +280,9 @@ export default function Home() {
           border-bottom: 1px solid var(--border);
         }
         .stories {
-          margin-top: 32px;
+          margin-top: 28px;
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: 1fr 1fr;
           gap: 14px;
         }
         .meta {
@@ -317,18 +291,15 @@ export default function Home() {
           gap: 8px;
           margin-bottom: 12px;
         }
-        .focus {
-          font-size: 10px;
-          letter-spacing: 0.1em;
+        .pill {
+          font-size: 11px;
+          font-weight: 700;
           text-transform: uppercase;
-          color: var(--primary-dark);
+          letter-spacing: 0.06em;
+          color: var(--primary);
           background: var(--primary-soft);
-          padding: 4px 8px;
+          padding: 4px 10px;
           border-radius: 999px;
-        }
-        .focus-ops .focus {
-          background: var(--accent-soft);
-          color: var(--accent);
         }
         .period {
           font-size: 11px;
@@ -340,74 +311,70 @@ export default function Home() {
           font-size: 13px;
           margin-bottom: 10px;
         }
-        .tools,
-        .pills {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
-          margin-top: 14px;
-        }
-        .tools span,
-        .pills span {
-          font-size: 11px;
-          border: 1px solid var(--border);
-          border-radius: 999px;
-          padding: 5px 9px;
-          color: var(--text-muted);
-          background: var(--bg-secondary);
-        }
         .text-link {
           display: inline-block;
-          margin-top: 24px;
+          margin-top: 22px;
           font-weight: 700;
-          color: var(--primary-dark);
+          color: var(--primary);
         }
         .skills {
           background: var(--bg-primary);
         }
         .skill-grid {
-          margin-top: 32px;
+          margin-top: 28px;
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: 1fr 1fr;
           gap: 14px;
         }
         .skill-card h3 {
-          font-size: 16px;
-          margin-bottom: 8px;
-          color: var(--primary-dark);
+          font-size: 15px;
+          margin-bottom: 12px;
+          color: var(--accent);
+        }
+        .pills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+        .pills span {
+          font-size: 12px;
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          padding: 6px 10px;
+          color: var(--text-muted);
+          background: var(--bg-secondary);
         }
         .edu-meta {
-          color: var(--primary-dark);
+          color: var(--primary);
           margin: 8px 0 12px;
           font-size: 14px;
+          font-weight: 600;
         }
         .edu-desc {
           color: var(--text-secondary);
           max-width: 560px;
-          line-height: 1.7;
         }
         .cta {
           background: var(--bg-secondary);
           border-top: 1px solid var(--border);
         }
-        .cta-inner {
-          max-width: 620px;
+        .cta-box {
+          max-width: 580px;
         }
         .cta h2 {
-          font-size: clamp(28px, 4vw, 40px);
+          font-size: clamp(26px, 4vw, 36px);
           margin-bottom: 12px;
         }
         .cta p {
           color: var(--text-secondary);
-          margin-bottom: 24px;
-          line-height: 1.7;
+          margin-bottom: 22px;
         }
         .cta-actions {
           display: flex;
           flex-wrap: wrap;
           gap: 10px;
         }
-        @media (max-width: 960px) {
+        @media (max-width: 900px) {
           .hero-grid,
           .grid,
           .about-grid,

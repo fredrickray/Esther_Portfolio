@@ -32,7 +32,6 @@ export default function Footer() {
           background: var(--bg-footer);
           color: var(--text-on-dark);
           padding: 48px 0 24px;
-          border-top: 1px solid var(--border-dark);
         }
         .wrap {
           max-width: var(--container-max);
@@ -49,8 +48,8 @@ export default function Footer() {
         }
         .name {
           font-family: var(--font-display), sans-serif;
-          font-size: 22px;
-          font-weight: 700;
+          font-size: 20px;
+          font-weight: 600;
           margin-bottom: 6px;
         }
         .tag {

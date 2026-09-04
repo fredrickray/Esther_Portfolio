@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, DM_Sans, IBM_Plex_Mono } from 'next/font/google';
+import { Unbounded, Karla, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 import { Navbar, Footer } from '@/components';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { profile } from '@/data/profile';
 
-const display = Space_Grotesk({
+const display = Unbounded({
   variable: '--font-display',
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
 });
 
-const body = DM_Sans({
+const body = Karla({
   variable: '--font-body',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],

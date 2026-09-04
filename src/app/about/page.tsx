@@ -20,7 +20,7 @@ export default function AboutPage() {
             <h1>
               Building interfaces
               <br />
-              people can use
+              <em>people can use</em>
             </h1>
             <p className="lede">
               {profile.about} {profile.aboutExtended}
@@ -49,18 +49,18 @@ export default function AboutPage() {
         <div className="container">
           <Reveal>
             <p className="section-kicker">Skills</p>
-            <h2 className="section-title">What I bring to a team</h2>
+            <h2 className="section-title">What I bring</h2>
           </Reveal>
           <div className="grid">
             {skillGroups.map((g, i) => (
               <Reveal key={g.label} delay={i * 50}>
                 <div className="block">
                   <h3>{g.label}</h3>
-                  <ul>
+                  <div className="pills">
                     {g.items.map((item) => (
-                      <li key={item}>{item}</li>
+                      <span key={item}>{item}</span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -123,19 +123,22 @@ export default function AboutPage() {
 
       <style jsx>{`
         .hero {
-          padding: 80px 0 64px;
+          padding: 72px 0 56px;
           background: var(--bg-secondary);
           border-bottom: 1px solid var(--border);
         }
         h1 {
-          font-size: clamp(36px, 6vw, 56px);
+          font-size: clamp(34px, 6vw, 54px);
           margin-bottom: 18px;
         }
+        h1 em {
+          font-style: normal;
+          color: var(--primary);
+        }
         .lede {
-          max-width: 680px;
+          max-width: 640px;
           color: var(--text-secondary);
           line-height: 1.75;
-          font-size: 16px;
         }
         .principles,
         .path,
@@ -157,27 +160,25 @@ export default function AboutPage() {
         .row,
         .item {
           display: grid;
-          grid-template-columns: 72px 1fr;
+          grid-template-columns: 64px 1fr;
           gap: 18px;
-          padding: 26px 0;
+          padding: 24px 0;
           border-bottom: 1px solid var(--border);
         }
         .n {
-          color: var(--primary-dark);
+          color: var(--primary);
           padding-top: 4px;
-          font-size: 13px;
         }
         .row h3,
         .item h3 {
-          font-size: 22px;
+          font-size: 20px;
           margin-bottom: 8px;
         }
         .row p,
         .item p,
         .edu p {
           color: var(--text-secondary);
-          line-height: 1.65;
-          max-width: 580px;
+          max-width: 560px;
         }
         .item .mono {
           font-size: 12px;
@@ -185,9 +186,9 @@ export default function AboutPage() {
           padding-top: 4px;
         }
         .grid {
-          margin-top: 28px;
+          margin-top: 24px;
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: 1fr 1fr;
           gap: 14px;
         }
         .block {
@@ -197,29 +198,30 @@ export default function AboutPage() {
           padding: 22px;
         }
         .block h3 {
-          font-size: 14px;
-          color: var(--primary-dark);
+          font-size: 15px;
+          color: var(--accent);
           margin-bottom: 12px;
         }
-        .block ul {
-          list-style: none;
+        .pills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
         }
-        .block li {
-          padding: 7px 0;
-          border-bottom: 1px solid var(--border);
-          font-size: 14px;
-        }
-        .block li:last-child {
-          border-bottom: none;
+        .pills span {
+          font-size: 12px;
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          padding: 6px 10px;
+          color: var(--text-muted);
         }
         .edu h2 {
-          font-size: clamp(26px, 4vw, 34px);
+          font-size: clamp(24px, 4vw, 32px);
           margin-bottom: 8px;
         }
         .meta {
-          color: var(--primary-dark);
+          color: var(--primary);
           margin-bottom: 12px;
-          font-size: 14px;
+          font-weight: 600;
         }
         .actions {
           display: flex;

@@ -13,9 +13,9 @@ export default function ExperiencePage() {
           <Reveal>
             <p className="section-kicker">Experience</p>
             <h1>
-              From support & ops
+              Support & ops
               <br />
-              to shipping interfaces
+              <em>into interfaces</em>
             </h1>
             <p className="lede">
               Customer-facing and administrative roles that strengthen how I build and communicate as
@@ -29,10 +29,10 @@ export default function ExperiencePage() {
         <div className="container">
           {experience.map((item, i) => (
             <Reveal key={item.id} delay={i * 70}>
-              <article className={`card focus-${item.focus}`}>
+              <article className="card">
                 <div className="head">
                   <div>
-                    <span className="mono focus">{item.focus}</span>
+                    <span className="pill">{item.focus}</span>
                     <h2>{item.role}</h2>
                     <p className="company">
                       {item.company} · {item.location}
@@ -92,7 +92,7 @@ export default function ExperiencePage() {
 
       <style jsx>{`
         .hero {
-          padding: 80px 0 56px;
+          padding: 72px 0 52px;
           background: var(--bg-secondary);
           border-bottom: 1px solid var(--border);
         }
@@ -100,10 +100,13 @@ export default function ExperiencePage() {
           font-size: clamp(34px, 5vw, 52px);
           margin-bottom: 14px;
         }
+        h1 em {
+          font-style: normal;
+          color: var(--primary);
+        }
         .lede {
-          max-width: 540px;
+          max-width: 520px;
           color: var(--text-secondary);
-          line-height: 1.7;
         }
         .list,
         .approach,
@@ -129,23 +132,20 @@ export default function ExperiencePage() {
           flex-wrap: wrap;
           margin-bottom: 16px;
         }
-        .focus {
+        .pill {
           display: inline-block;
-          font-size: 10px;
-          letter-spacing: 0.1em;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.06em;
           text-transform: uppercase;
-          color: var(--primary-dark);
+          color: var(--primary);
           background: var(--primary-soft);
-          padding: 4px 8px;
+          padding: 4px 10px;
           border-radius: 999px;
           margin-bottom: 10px;
         }
-        .focus-ops .focus {
-          background: var(--accent-soft);
-          color: var(--accent);
-        }
         h2 {
-          font-size: clamp(24px, 3vw, 30px);
+          font-size: clamp(22px, 3vw, 28px);
           margin-bottom: 4px;
         }
         .company {
@@ -168,7 +168,7 @@ export default function ExperiencePage() {
           color: var(--text-secondary);
           font-size: 15px;
           line-height: 1.65;
-          max-width: 760px;
+          max-width: 740px;
         }
         li::before {
           content: '';
@@ -186,10 +186,10 @@ export default function ExperiencePage() {
           gap: 6px;
         }
         .tools span {
-          font-size: 11px;
+          font-size: 12px;
           border: 1px solid var(--border);
           border-radius: 999px;
-          padding: 5px 9px;
+          padding: 5px 10px;
           color: var(--text-muted);
         }
         .approach {
@@ -209,27 +209,27 @@ export default function ExperiencePage() {
           border-bottom: 1px solid var(--border);
         }
         .p .mono {
-          color: var(--primary-dark);
+          color: var(--primary);
           padding-top: 4px;
         }
         .p h3 {
-          font-size: 20px;
+          font-size: 18px;
           margin-bottom: 6px;
         }
         .p p {
           color: var(--text-secondary);
-          max-width: 540px;
+          max-width: 520px;
         }
         .box {
-          max-width: 620px;
+          max-width: 560px;
         }
         .box h2 {
-          font-size: clamp(26px, 4vw, 34px);
+          font-size: clamp(24px, 4vw, 32px);
           margin-bottom: 10px;
         }
         .box p {
           color: var(--text-secondary);
-          margin-bottom: 22px;
+          margin-bottom: 20px;
         }
       `}</style>
     </div>
