@@ -2,4 +2,4 @@ export { default as Navbar } from './Navbar';
 export { default as Footer } from './Footer';
 export { default as Reveal } from './Reveal';
 export { default as ResumeModal } from './ResumeModal';
-export { default as StackPanel } from './StackPanel';
+export { default as WireframeBoard } from './WireframeBoard';
